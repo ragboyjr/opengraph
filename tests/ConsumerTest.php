@@ -3,8 +3,9 @@
 namespace Fusonic\OpenGraph\Test;
 
 use Fusonic\OpenGraph\Consumer;
+use PHPUnit\Framework\TestCase;
 
-class ConsumerTest extends \PHPUnit_Framework_TestCase
+class ConsumerTest extends TestCase
 {
     /**
      * Checks crawler to read basic properties.
@@ -30,8 +31,7 @@ class ConsumerTest extends \PHPUnit_Framework_TestCase
 <body></body>
 </html>
 LONG;
-
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content, "about:blank");
 
@@ -64,7 +64,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content, "about:blank");
 
@@ -88,7 +88,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
         $consumer->useFallbackMode = true;
 
         $res = $consumer->loadHtml($content, "about:blank");
@@ -118,7 +118,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 
@@ -149,7 +149,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 
@@ -176,7 +176,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 
@@ -201,7 +201,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 
@@ -222,7 +222,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 
@@ -243,7 +243,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
         $consumer->debug = true;
 
         $res = $consumer->loadHtml($content);
@@ -260,7 +260,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 
@@ -281,7 +281,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
         $consumer->debug = true;
 
         $res = $consumer->loadHtml($content);
@@ -298,7 +298,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 
@@ -319,7 +319,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
         $consumer->debug = true;
 
         $res = $consumer->loadHtml($content);
@@ -336,7 +336,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 
@@ -354,7 +354,7 @@ LONG;
 </html>
 LONG;
 
-        $consumer = new Consumer();
+        $consumer = Consumer::create();
 
         $res = $consumer->loadHtml($content);
 

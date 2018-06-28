@@ -21,10 +21,16 @@ See [ogp.me](http://ogp.me) for information on the Open Graph protocol.
 ## Installation
 
 The most flexible installation method is using Composer: Simply create a composer.json file in the root of your project:
-``` json
+```json
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ragboyjr/opengraph"
+        }
+    ],
     "require": {
-        "fusonic/opengraph": "@dev"
+        "fusonic/opengraph": "dev-master"
     }
 }
 ```
@@ -37,7 +43,7 @@ php composer.phar install
 
 Once installed, include vendor/autoload.php in your script.
 
-``` php
+```php
 require "vendor/autoload.php";
 ```
 
@@ -45,10 +51,10 @@ require "vendor/autoload.php";
 
 ### Retrieve Open Graph data from a URL
 
-``` php
+```php
 use Fusonic\OpenGraph\Consumer;
 
-$consumer = new Consumer();
+$consumer = Consumer::create();
 $object = $consumer->loadUrl("http://www.youtube.com/watch?v=P422jZg50X4");
 
 // Basic information of the object
@@ -75,7 +81,7 @@ _There are some more properties but these are the basic and most commonly used o
 
 ### Publish own Open Graph data
 
-``` php
+```php
 use Fusonic\OpenGraph\Elements\Image;
 use Fusonic\OpenGraph\Elements\Video;
 use Fusonic\OpenGraph\Publisher;
@@ -123,15 +129,15 @@ echo $publisher->generateHtml($object);
 //       content="1920">
 ```
 
-_HTML code is formatted just for displaying purposes. You may choose between HTML5/XHTML output using the ```$publisher->doctype``` property._
+_HTML code is formatted just for displaying purposes. You may choose between HTML5/XHTML output using the ```$publisher->doctype```property._
 
 ## Running tests
 
 You can run the test suite with the following command:
 
-``` bash
-phpunit --bootstrap tests/bootstrap.php .
-``` 
+```bash
+./vendor/bin/phpunit
+```
 
 ## License
 

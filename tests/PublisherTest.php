@@ -4,8 +4,9 @@ namespace Fusonic\OpenGraph\Test;
 
 use Fusonic\OpenGraph\Publisher;
 use Fusonic\OpenGraph\Test\TestData\TestPublishObject;
+use PHPUnit\Framework\TestCase;
 
-class PublisherTest extends \PHPUnit_Framework_TestCase
+class PublisherTest extends TestCase
 {
     /**
      * @var Publisher

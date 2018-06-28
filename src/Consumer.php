@@ -3,10 +3,13 @@
 namespace Fusonic\OpenGraph;
 
 use Fusonic\Linq\Linq;
-use Fusonic\OpenGraph\Objects\ObjectBase;
-use Fusonic\OpenGraph\Objects\Website;
-use GuzzleHttp\Adapter\AdapterInterface;
-use GuzzleHttp\Client;
+use Fusonic\OpenGraph\{
+    Objects\ObjectBase,
+    Objects\Website
+};
+use GuzzleHttp\{
+    Client, ClientInterface
+};
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -32,15 +35,12 @@ class Consumer
      */
     public $debug = false;
 
-    /**
-     * @param   AdapterInterface $adapter Guzzle adapter to use for making HTTP requests.
-     * @param   array            $config  Optional Guzzle config overrides.
-     */
-    public function __construct(AdapterInterface $adapter = null, array $config = [])
-    {
-        $config = array_replace_recursive(['adapter' => $adapter], $config);
+    public function __construct(ClientInterface $client) {
+        $this->client = $client;
+    }
 
-        $this->client = new Client($config);
+    public static function create(array $config = []): self {
+        return new self(new Client($config));
     }
 
     /**
@@ -55,7 +55,7 @@ class Consumer
         // Fetch HTTP content using Guzzle
         $response = $this->client->get($url);
 
-        return $this->loadHtml($response->getBody()->__toString(), $url);
+        return $this->loadHtml((string) $response->getBody(), $url);
     }
 
     /**
@@ -100,9 +100,9 @@ class Consumer
                 )
                 ->toArray();
             $properties = array_merge($properties, $props);
-          
+
         }
-            
+
         // Create new object of the correct type
         $typeProperty = Linq::from($properties)
             ->firstOrNull(
